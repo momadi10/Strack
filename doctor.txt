@@ -1,0 +1,40 @@
+env: load .env
+env: export EXPO_PUBLIC_SUPABASE_ANON_KEY EXPO_PUBLIC_SUPABASE_URL
+Running 17 checks on your project...
+15/17 checks passed. 2 checks failed. Possible issues detected:
+Use the --verbose flag to see more details about passed checks.
+
+Γ£û Check that required peer dependencies are installed
+Missing peer dependency: react-native-worklets
+Required by: react-native-reanimated
+Advice:
+Install missing required peer dependency with "npx expo install react-native-worklets"
+Your app may crash outside of Expo Go without this dependency. Native module peer dependencies must be installed directly.
+
+Γ£û Check that packages match versions required by installed Expo SDK
+
+Γ¥ù Major version mismatches
+package                                    expected  found    
+@react-native-async-storage/async-storage  2.2.0     3.0.1    
+@react-native-community/netinfo            11.5.2    12.0.1   
+
+ΓÜá∩╕Å Minor version mismatches
+package                                    expected  found    
+react-native-safe-area-context             ~5.6.2    5.7.0    
+react-native-screens                       ~4.23.0   4.24.0   
+
+≡ƒöº Patch version mismatches
+package                                    expected  found    
+expo                                       ~55.0.5   55.0.4   
+expo-image                                 ~55.0.6   55.0.5   
+react-native-reanimated                    4.2.1     4.2.2    
+react-native-webview                       13.16.0   13.16.1  
+
+Changelogs:
+- expo-image ΓåÆ https://github.com/expo/expo/blob/sdk-55/packages/expo-image/CHANGELOG.md
+
+8 packages out of date.
+Advice:
+Use 'npx expo install --check' to review and upgrade your dependencies.
+To ignore specific packages, add them to "expo.install.exclude" in package.json. Learn more: https://expo.fyi/dependency-validation
+

@@ -1,0 +1,54 @@
+{
+  "expo": {
+    "name": "SpendTrack",
+    "slug": "tri-speeded-min-cards",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#080B14"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSFaceIDUsageDescription": "Allow SpendTrack to securely unlock your app using Face ID."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#2C5A7C",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "package": "com.momadi.agonpreview"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "4edb55ff-5f82-4d19-92ea-fff97dc65b23"
+      }
+    },
+    "updates": {},
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "plugins": [
+      "expo-sharing",
+      "@react-native-community/datetimepicker",
+      "expo-font",
+      "expo-image"
+    ]
+  }
+}
