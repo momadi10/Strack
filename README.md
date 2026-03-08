@@ -1,0 +1,2 @@
+# Strack
+personal finance app
