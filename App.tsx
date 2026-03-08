@@ -129,7 +129,7 @@ function HomeTabs() {
 }
 
 function AppContent() {
-  const [fontsLoaded] = useFonts({
+  const [fontsLoaded, fontError] = useFonts({
     ...Ionicons.font,
   });
   const [session, setSession] = React.useState<Session | null>(null);
@@ -166,7 +166,7 @@ function AppContent() {
 
   const { isLoading, transactions } = useData();
 
-  if (!fontsLoaded || !isInitialized) {
+  if ((!fontsLoaded && !fontError) || !isInitialized) {
     return null;
   }
 

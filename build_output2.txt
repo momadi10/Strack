@@ -1,0 +1,20 @@
+Starting a Gradle Daemon, 1 incompatible Daemon could not be reused, use --status for details
+
+FAILURE: Build failed with an exception.
+
+* Where:
+Settings file 'Z:\android\settings.gradle' line: 21
+
+* What went wrong:
+Error resolving plugin [id: 'com.facebook.react.settings']
+> A build operation failed.
+      Could not read workspace metadata from C:\Users\Mohamed\.gradle\caches\9.0.0\transforms\3b54fbcc42f2a76b19a2a58542e3538d\metadata.bin
+   > Could not read workspace metadata from C:\Users\Mohamed\.gradle\caches\9.0.0\transforms\3b54fbcc42f2a76b19a2a58542e3538d\metadata.bin
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to generate a Build Scan (Powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 18s

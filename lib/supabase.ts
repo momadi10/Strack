@@ -2,8 +2,9 @@ import 'react-native-url-polyfill/auto';
 import { createClient } from '@supabase/supabase-js';
 import { Platform } from 'react-native';
 
-const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL || '';
-const supabaseAnonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY || '';
+const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co';
+const supabaseAnonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY || 'placeholder_key';
+
 
 // Safe storage wrapper to prevent "Native module is null" errors
 // We use a memory fallback if AsyncStorage is not available (e.g. on web or if native module is missing)
@@ -12,6 +13,14 @@ import * as SecureStore from 'expo-secure-store';
 // Safe storage wrapper to prevent "Native module is null" errors
 // We use a memory fallback if native storage is not available
 const memoryStorage: Record<string, string> = {};
+
+// Add a timeout wrapper to prevent SecureStore from hanging forever on some Android devices
+const withTimeout = <T>(promise: Promise<T>, ms: number = 3000): Promise<T> => {
+    return Promise.race([
+        promise,
+        new Promise<T>((_, reject) => setTimeout(() => reject(new Error('SecureStore Timeout')), ms))
+    ]);
+};
 
 export const safeStorage = {
     getItem: async (key: string) => {
@@ -25,8 +34,9 @@ export const safeStorage = {
             }
 
             // For native mobile, use Expo SecureStore which is more reliable in Expo environment
-            return await SecureStore.getItemAsync(key);
+            return await withTimeout(SecureStore.getItemAsync(key));
         } catch (e) {
+            console.warn('safeStorage.getItem failed:', e);
             return memoryStorage[key] || null;
         }
     },
@@ -39,9 +49,10 @@ export const safeStorage = {
                     memoryStorage[key] = value;
                 }
             } else {
-                await SecureStore.setItemAsync(key, value);
+                await withTimeout(SecureStore.setItemAsync(key, value));
             }
         } catch (e) {
+            console.warn('safeStorage.setItem failed:', e);
             memoryStorage[key] = value;
         }
     },
@@ -54,9 +65,10 @@ export const safeStorage = {
                     delete memoryStorage[key];
                 }
             } else {
-                await SecureStore.deleteItemAsync(key);
+                await withTimeout(SecureStore.deleteItemAsync(key));
             }
         } catch (e) {
+            console.warn('safeStorage.removeItem failed:', e);
             delete memoryStorage[key];
         }
     },
